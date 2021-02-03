@@ -32,7 +32,7 @@ def train(cfg):
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.8, random_state=SEED)
 
-    cfg['data_hash'] = hashlib.md5([X_train, X_test, y_train, y_test])
+    cfg['data_hash'] = hash(str([X_train, X_test, y_train, y_test]))
 
     clf = RandomForestClassifier(**cfg, random_state=SEED)
     clf.fit(X_train, y_train)
