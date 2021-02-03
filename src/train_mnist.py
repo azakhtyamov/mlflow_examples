@@ -18,7 +18,7 @@ random.seed(SEED)
 np.random.seed(SEED)
 
 def train(cfg):
-    autocommit(file_paths = [])
+    autocommit()
     mlflow.set_tracking_uri(TRACKING_URI)
     mlflow.set_experiment(EXPERIMENT_NAME)
 
@@ -30,6 +30,8 @@ def train(cfg):
 
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.8, random_state=SEED)
+
+    cfg['data_hash'] = hash([X_train, X_test, y_train, y_test])
 
     clf = RandomForestClassifier(**cfg, random_state=SEED)
     clf.fit(X_train, y_train)
