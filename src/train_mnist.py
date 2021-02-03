@@ -35,7 +35,7 @@ def train(cfg):
 
     data_hash = hashlib.md5()
     for df in [X_train, X_test, y_train, y_test]:
-        data_hash.update(str(df))
+        data_hash.update(df)
 
     clf = RandomForestClassifier(**cfg, random_state=SEED)
     clf.fit(X_train, y_train)
