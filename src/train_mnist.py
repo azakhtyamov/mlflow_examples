@@ -1,6 +1,5 @@
 import mlflow
 import random
-import hashlib
 import numpy as np
 import pandas as pd
 
@@ -32,7 +31,7 @@ def train(cfg):
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.8, random_state=SEED)
 
-    cfg['data_hash'] = hash(str([X_train, X_test, y_train, y_test]))
+    data_hash = hash(str([X_train, X_test, y_train, y_test]))
 
     clf = RandomForestClassifier(**cfg, random_state=SEED)
     clf.fit(X_train, y_train)
@@ -45,6 +44,7 @@ def train(cfg):
 
     with mlflow.start_run():
         mlflow.log_params(cfg)
+        mlflow.log_param('data_hash', data_hash)
         mlflow.log_metrics(df)
     print(df['macro avg_f1-score'])
 
