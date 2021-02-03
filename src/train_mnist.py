@@ -1,5 +1,6 @@
 import mlflow
 import random
+import hashlib
 import numpy as np
 import pandas as pd
 
@@ -17,8 +18,9 @@ EXPERIMENT_NAME = 'first_try2'
 random.seed(SEED)
 np.random.seed(SEED)
 
+
 def train(cfg):
-    autocommit(file_paths = ['./'], message = 'Another version of random forest')
+    autocommit(file_paths=['./'], message='Another version of random forest')
     mlflow.set_tracking_uri(TRACKING_URI)
     mlflow.set_experiment(EXPERIMENT_NAME)
 
@@ -31,13 +33,13 @@ def train(cfg):
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.8, random_state=SEED)
 
-    data_hash = hash(str([X_train, X_test, y_train, y_test]))
+    data_hash = hashlib.sha1(str([X_train, X_test, y_train, y_test])).hexdigest()
 
     clf = RandomForestClassifier(**cfg, random_state=SEED)
     clf.fit(X_train, y_train)
     preds = clf.predict(X_test)
 
-    scores = classification_report(y_test, preds, output_dict = True)
+    scores = classification_report(y_test, preds, output_dict=True)
 
     df = pd.json_normalize(scores, sep='_')
     df = df.to_dict(orient='records')[0]
@@ -47,6 +49,7 @@ def train(cfg):
         mlflow.log_param('data_hash', data_hash)
         mlflow.log_metrics(df)
     print(df['macro avg_f1-score'])
+
 
 if __name__ == '__main__':
     cfg = {'n_estimators': 500,
