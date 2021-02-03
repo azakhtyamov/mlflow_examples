@@ -40,7 +40,7 @@ def train(cfg):
     with mlflow.start_run():
         mlflow.log_params(cfg)
         mlflow.log_metrics(df)
-    print(df['weighted avg_f1-score'])
+    print(df['macro avg_f1-score'])
 
 if __name__ == '__main__':
     cfg = {'n_estimators': 500,
