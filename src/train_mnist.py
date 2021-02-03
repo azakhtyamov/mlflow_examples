@@ -43,7 +43,7 @@ def train(cfg):
     print(df)
 
 if __name__ == '__main__':
-    cfg = {'n_estimators': 200,
+    cfg = {'n_estimators': 500,
            'max_depth': 5,
            'min_samples_split': 2,
            'min_samples_leaf': 1,
