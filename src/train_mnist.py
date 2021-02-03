@@ -9,6 +9,8 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import classification_report
 from sklearn.ensemble import RandomForestClassifier
 
+from src.git_autocommit import autocommit
+
 SEED = 0
 TRACKING_URI = 'http://localhost:5003'
 EXPERIMENT_NAME = 'first_try2'
@@ -16,7 +18,7 @@ random.seed(SEED)
 np.random.seed(SEED)
 
 def train(cfg):
-    autocommit(file_paths = ['../'])
+    autocommit(file_paths = [])
     mlflow.set_tracking_uri(TRACKING_URI)
     mlflow.set_experiment(EXPERIMENT_NAME)
 
@@ -45,7 +47,7 @@ def train(cfg):
 
 if __name__ == '__main__':
     cfg = {'n_estimators': 500,
-           'max_depth': 10,
+           'max_depth': 15,
            'min_samples_split': 2,
            'min_samples_leaf': 1,
            }
