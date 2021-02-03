@@ -18,7 +18,7 @@ random.seed(SEED)
 np.random.seed(SEED)
 
 def train(cfg):
-    autocommit(message = 'Another version of random forest')
+    autocommit(file_paths = ['./'], message = 'Another version of random forest')
     mlflow.set_tracking_uri(TRACKING_URI)
     mlflow.set_experiment(EXPERIMENT_NAME)
 

@@ -2,6 +2,8 @@ import os
 import sys
 import git
 
+# https://gist.github.com/GCBallesteros/6419f64400097efb0ff506aea0798c71
+
 def _get_main_file(repo):
     path_to_dir = os.path.dirname(os.path.abspath(__file__))
     abs_path = os.path.join(path_to_dir, os.path.split(sys.argv[0])[-1])
