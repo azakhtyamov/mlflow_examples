@@ -129,4 +129,5 @@ dmypy.json
 .pyre/
 
 mlflow_data/
+mlruns/
 .vscode/
