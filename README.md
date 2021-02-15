@@ -1,5 +1,5 @@
 # Mlflow Examples
-This is an example of mlflow-augmented research pipeline based on official manuals and https://github.com/osin-vladimir/mlflow_tutorial
+This is an example of mlflow-augmented research pipeline based on official manuals.
 
 1. Install anaconda: https://www.anaconda.com/products/individual 
 2. Install mlflow itself: `pip install mlflow` 
