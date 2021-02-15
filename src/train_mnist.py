@@ -1,3 +1,4 @@
+import os
 import mlflow
 import random
 import hashlib
@@ -13,13 +14,14 @@ from sklearn.ensemble import RandomForestClassifier
 from src.git_autocommit import autocommit
 
 SEED = 0
-TRACKING_URI = 'http://localhost:5003'
-EXPERIMENT_NAME = 'first_try2'
+TRACKING_URI = 'http://localhost:5000'
+EXPERIMENT_NAME = 'mnist'
 random.seed(SEED)
 np.random.seed(SEED)
 
 
 def train(cfg):
+    os.system("conda env export > environment.yaml")
     autocommit(file_paths=['./'], message='Another version of random forest')
     mlflow.set_tracking_uri(TRACKING_URI)
     mlflow.set_experiment(EXPERIMENT_NAME)
@@ -33,6 +35,7 @@ def train(cfg):
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.8, random_state=SEED)
 
+    # Track hash of data & split
     data_hash = hashlib.md5()
     for df in [X_train, X_test, y_train, y_test]:
         data_hash.update(df)

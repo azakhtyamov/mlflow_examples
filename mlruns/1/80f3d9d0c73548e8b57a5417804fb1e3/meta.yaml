@@ -1,0 +1,15 @@
+artifact_uri: ./mlruns/1/80f3d9d0c73548e8b57a5417804fb1e3/artifacts
+end_time: 1613410646627
+entry_point_name: ''
+experiment_id: '1'
+lifecycle_stage: active
+name: ''
+run_id: 80f3d9d0c73548e8b57a5417804fb1e3
+run_uuid: 80f3d9d0c73548e8b57a5417804fb1e3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1613410646600
+status: 3
+tags: []
+user_id: azat
