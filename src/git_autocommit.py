@@ -55,7 +55,6 @@ def autocommit(
 
     # Track __main__
     if add_main:
-        print(_get_main_file(repo))
         file_paths.append(_get_main_file(repo))
 
     # Prepare arugments for commit
