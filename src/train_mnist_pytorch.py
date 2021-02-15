@@ -15,8 +15,10 @@ from torch.optim.lr_scheduler import StepLR
 
 from sklearn.metrics import classification_report
 
-TRACKING_URI = 'http://localhost:5003'
-EXPERIMENT_NAME = 'first_try2'
+from src.git_autocommit import autocommit
+
+TRACKING_URI = 'http://localhost:5000'
+EXPERIMENT_NAME = 'mnist'
 
 
 class Net(nn.Module):
@@ -105,6 +107,7 @@ def main():
     mlflow.set_experiment(EXPERIMENT_NAME)
 
     os.system("conda env export > environment.yml")
+    autocommit(file_paths=['./'], message='Trying CNN')
 
     # Training settings
     parser = argparse.ArgumentParser(description='PyTorch MNIST Example')
@@ -174,12 +177,6 @@ def main():
 
         if args.save_model:
             torch.save(model.state_dict(), "mnist_cnn.pt")
-
-        env = mlflow.pytorch.get_default_conda_env()
-        print("conda env: {}".format(env))
-
-
-
 
 if __name__ == '__main__':
     main()
