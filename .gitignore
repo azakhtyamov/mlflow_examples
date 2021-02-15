@@ -131,3 +131,4 @@ dmypy.json
 mlflow_data/
 mlruns/
 .vscode/
+notebooks/mnist/
