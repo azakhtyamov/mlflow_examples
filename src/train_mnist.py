@@ -11,7 +11,7 @@ from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import classification_report
 from sklearn.ensemble import RandomForestClassifier
 
-from src.git_autocommit import autocommit
+from src.utils.git_autocommit import autocommit
 
 SEED = 0
 TRACKING_URI = 'http://localhost:5000'
